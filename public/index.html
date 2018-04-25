@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js">
+  </script>
+  <script src="index.js" defer></script>
+  <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+  <div id="vue-app">
+
+    <router-view></router-view>
+
+  </div>
+      <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+</body>
+</html>
+
+<template id="home-page">
+  <div class="vue-component">
+    <h1>{{ people.length }}</h1>
+
+    <h1>{{ message }}</h1>
+
+    <div v-for="person in people">
+      <h1 v-on:click="toggleBio(person)">{{ person.name }}</h1>
+      <h2 v-bind:class="{strike: person.bioVisible}">{{ person.bio }}</h2>
+      <h3>{{ person.bioVisible }}</h3>
+      <button v-on:click="deletePerson(person)"></button>
+    </div>
+
+    <p>Enter the new person's name<input type="text" v-model="newPerson.name"></p>
+    <p>Enter the new person's bio<input type="text" v-model="newPerson.bio"></p>
+    <p>Enter the new person's bioVisible<input type="text" v-model="newPerson.bioVisible"></p>
+    <button v-on:click="addPerson()">Add a Person</button>
+    <button v-on:click="getPeople()">Get the people</button>
+
+  </div>
+</template>
+
